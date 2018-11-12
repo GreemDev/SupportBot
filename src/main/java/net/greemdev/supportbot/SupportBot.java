@@ -17,10 +17,15 @@ import org.slf4j.LoggerFactory;
 import javax.security.auth.login.LoginException;
 
 public class SupportBot {
-
+    /**
+     *  Gets a logger for a specific class.
+     * @param clazz Class to get the {@link org.slf4j.Logger} for.
+     * @return {@link org.slf4j.Logger} logger
+     */
     public static Logger getLogger(Class clazz) {
         return LoggerFactory.getLogger(clazz);
     }
+
     public static Logger getLogger() {
         return LoggerFactory.getLogger(SupportBot.class);
     }

@@ -2,6 +2,7 @@ package net.greemdev.supportbot.objects;
 
 import com.google.gson.*;
 import net.greemdev.supportbot.SupportBot;
+import net.greemdev.supportbot.util.ConfigUtil;
 import org.apache.commons.io.FileUtils;
 import org.jetbrains.annotations.Nullable;
 
@@ -48,21 +49,21 @@ public @Nullable class GuildConfig {
         this.rolesAllowedToClose = Arrays.asList(rolesAllowedToClose.split(","));
     }
 
-    public void writeData() {
-        File dataFile = new File("data/guilds/" + this.id + ".json");
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    public void write() {
+        var file = ConfigUtil.getGuildConfigFile(this.id);
+        var gson = new GsonBuilder().setPrettyPrinting().create();
         try {
-            FileUtils.write(dataFile, gson.toJson(this), Charset.forName("UTF8"));
+            FileUtils.write(file, gson.toJson(this), Charset.forName("UTF8"));
         } catch(IOException e) {
             e.printStackTrace();
-            SupportBot.getLogger().error("Couldn't write the data to the file " + dataFile.getAbsolutePath() + "!");
+            SupportBot.getLogger().error("Couldn't write the data to the file " + file.getAbsolutePath() + "!");
         }
 
     }
 
-    public static GuildConfig getData(String guildId) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        File f = new File("data/guilds/" + guildId + ".json");
+    public static GuildConfig get(String guildId) {
+        var gson = new GsonBuilder().setPrettyPrinting().create();
+        var f = ConfigUtil.getGuildConfigFile(guildId);
         Scanner sc;
         try {
             sc = new Scanner(f);

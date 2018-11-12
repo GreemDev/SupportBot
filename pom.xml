@@ -14,6 +14,11 @@
             <name>bintray</name>
             <url>http://jcenter.bintray.com</url>
         </repository>
+        <repository>
+            <id>nexus</id>
+            <name>scarsz-nexus</name>
+            <url>https://nexus.scarsz.me/content/repositories/3rd/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -44,6 +49,4 @@
             <version>LATEST</version>
         </dependency>
     </dependencies>
-
-
 </project>

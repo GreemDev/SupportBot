@@ -3,6 +3,7 @@ package net.greemdev.supportbot.objects;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.greemdev.supportbot.SupportBot;
+import net.greemdev.supportbot.util.ConfigUtil;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -45,8 +46,8 @@ public class BotConfig {
     }
 
     public static void write() {
-        File dataFile = new File("data/config.json");
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        var dataFile = ConfigUtil.getBotConfigFile();
+        var gson = new GsonBuilder().setPrettyPrinting().create();
         try {
             FileUtils.write(dataFile, gson.toJson(new BotConfig()), Charset.forName("UTF8"));
         } catch(IOException e) {

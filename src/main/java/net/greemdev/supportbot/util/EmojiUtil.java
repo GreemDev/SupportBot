@@ -1,4 +1,4 @@
-package net.greemdev.supportbot;
+package net.greemdev.supportbot.util;
 
 @SuppressWarnings("unused")
 

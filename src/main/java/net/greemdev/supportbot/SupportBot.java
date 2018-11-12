@@ -10,6 +10,7 @@ import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
 import net.greemdev.supportbot.events.Handler;
 import net.greemdev.supportbot.objects.BotConfig;
+import net.greemdev.supportbot.util.EmojiUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

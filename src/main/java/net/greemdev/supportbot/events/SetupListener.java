@@ -15,9 +15,9 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-public class SetupListener {
+class SetupListener {
 
-    public static void onMessage(GuildMessageReceivedEvent event) {
+    static void onMessage(GuildMessageReceivedEvent event) {
         if (!ConfigUtil.getGuildConfigFile(event.getGuild().getId()).exists()) {
             if (event.getMessage().getContentRaw().equalsIgnoreCase("setupSupport")) {
                 var t = new Thread(() -> handle(event));
@@ -30,7 +30,7 @@ public class SetupListener {
 
     }
 
-    static void handle(GuildMessageReceivedEvent event) {
+    private static void handle(GuildMessageReceivedEvent event) {
         var c = event.getChannel();
         if (event.getMember() == null || event.getMember().getUser().isBot() ||
                 (!event.getMember().isOwner() && !event.getMember().hasPermission(Permission.ADMINISTRATOR))) return;
@@ -43,7 +43,7 @@ public class SetupListener {
         var maxOpen = ParserUtil.getInt(c.sendMessage("How many tickets can be open at any time?").complete().getTextChannel(), event.getAuthor());
         String[] rolesAllowed = new String[0];
         while (rolesAllowed.length == 0) {
-            event.getChannel().sendMessage("Send a comma-separated list of role names in this server that you want to be able to close tickets. \n\nAvailable Roles: `" + event.getGuild().getRoles().stream().map(Role::getName).filter(r -> !r.equals("@everyone")).collect(Collectors.joining(",")) + "`").queue();
+            event.getChannel().sendMessage("Send a comma-separated list of role names in this server that you want to be able to close tickets. \n\nAvailable Roles: `" + event.getGuild().getRoles().stream().map(Role::getName).filter(r -> !r.equals("@everyone")).collect(Collectors.joining(" ,")) + "`").queue();
             rolesAllowed = Arrays.stream(ParserUtil.getGuildMessageReceived(event.getAuthor()).getMessage().getContentRaw().split(","))
                     .map(s -> ParserUtil.getRoleByName(event.getGuild(), s))
                     .filter(Objects::nonNull)

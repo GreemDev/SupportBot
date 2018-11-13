@@ -7,19 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb01915-f7e4-4e21-8681-c2b8ec117565" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/commands/CommandRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/commands/owner/EvalCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SetupListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SupportChannelListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ParserUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/SupportBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/SupportBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/objects/BotConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/objects/BotConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/objects/GuildConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/objects/GuildConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/GenericListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/GenericListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SetupListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SetupListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SupportChannelListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SupportChannelListener.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,18 +37,18 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="40" />
-          <entry key="java" value="13654" />
+          <entry key="java" value="13685" />
           <entry key="json" value="38" />
-          <entry key="txt" value="73" />
+          <entry key="txt" value="186" />
           <entry key="xml" value="237" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Git file" value="40" />
-          <entry key="JAVA" value="13654" />
+          <entry key="JAVA" value="13685" />
           <entry key="JSON" value="38" />
-          <entry key="PLAIN_TEXT" value="73" />
+          <entry key="PLAIN_TEXT" value="186" />
           <entry key="XML" value="237" />
         </counts>
       </usages-collector>
@@ -66,7 +57,7 @@
           <entry key="LICENSE" value="1" />
           <entry key="gitignore" value="1" />
           <entry key="iml" value="1" />
-          <entry key="java" value="30" />
+          <entry key="java" value="31" />
           <entry key="json" value="8" />
           <entry key="xml" value="8" />
         </counts>
@@ -76,7 +67,7 @@
           <entry key="Enforced Plain Text" value="2" />
           <entry key="Git file" value="1" />
           <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="30" />
+          <entry key="JAVA" value="31" />
           <entry key="JSON" value="6" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="8" />
@@ -123,8 +114,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SetupListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="39" column="200" selection-start-line="39" selection-start-column="200" selection-end-line="39" selection-end-column="200" />
+            <state relative-caret-position="192">
+              <caret line="46" column="131" lean-forward="true" selection-start-line="46" selection-start-column="131" selection-end-line="46" selection-end-column="131" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -135,18 +126,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SupportChannelListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="255">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/guilds/385902350432206849.json">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -179,6 +165,18 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="240">
               <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/GenericListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -235,7 +233,6 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/EmojiUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/FileUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/GenericListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/FormatUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/commands/Categories.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java" />
@@ -249,6 +246,7 @@
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/objects/GuildConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ParserUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/GenericListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SupportChannelListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SetupListener.java" />
       </list>
@@ -262,8 +260,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="277" />
-    <option name="y" value="32" />
+    <option name="x" value="-11" />
+    <option name="y" value="2" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -326,12 +324,6 @@
               <item name="SupportBot" type="b2602c69:ProjectViewProjectNode" />
               <item name="SupportBot" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SupportBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SupportBot" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="guilds" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SupportBot" type="b2602c69:ProjectViewProjectNode" />
@@ -470,7 +462,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/data/config.json&#10;Z:/Coding Projects/Java/JDA/SupportBot/data/guilds/null.json&#10;Z:/Coding Projects/Java/JDA/SupportBot/data/guilds/385902350432206849.json" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542085982420" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542086561865" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -543,7 +535,7 @@
       <workItem from="1541910025054" duration="416000" />
       <workItem from="1541983519175" duration="814000" />
       <workItem from="1541994338031" duration="7958000" />
-      <workItem from="1542066809339" duration="16569000" />
+      <workItem from="1542066809339" duration="17147000" />
     </task>
     <task id="LOCAL-00001" summary="jesus i haven't committed in a while">
       <created>1542000823240</created>
@@ -559,11 +551,18 @@
       <option name="project" value="LOCAL" />
       <updated>1542001652859</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="support system setup process is working. still don't use this code as it doesnt make tickets or anything.">
+      <created>1542086018987</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1542086018987</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36354000" />
+    <option name="totallyTimeSpent" value="36932000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -605,7 +604,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="jesus i haven't committed in a while" />
     <MESSAGE value="document supportbot.java a bit more" />
-    <option name="LAST_COMMIT_MESSAGE" value="document supportbot.java a bit more" />
+    <MESSAGE value="support system setup process is working. still don't use this code as it doesnt make tickets or anything." />
+    <option name="LAST_COMMIT_MESSAGE" value="support system setup process is working. still don't use this code as it doesnt make tickets or anything." />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/nio/charset/Charset.java">
@@ -711,16 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/GenericListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="38" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ParserUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
@@ -794,10 +784,20 @@
     <entry file="file://$PROJECT_DIR$/data/guilds/385902350432206849.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/GenericListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SupportChannelListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="255">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -806,8 +806,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SetupListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="39" column="200" selection-start-line="39" selection-start-column="200" selection-end-line="39" selection-end-column="200" />
+        <state relative-caret-position="192">
+          <caret line="46" column="131" lean-forward="true" selection-start-line="46" selection-start-column="131" selection-end-line="46" selection-end-column="131" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

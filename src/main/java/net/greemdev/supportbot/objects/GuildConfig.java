@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +18,7 @@ public @Nullable class GuildConfig {
     private boolean authorCanClose;
     private String defaultReaction;
     private String initialChannel;
-    private List<String> rolesAllowedToClose;
+    private String[] rolesAllowedToClose;
     private String id;
     private int maxOpen;
 
@@ -30,7 +31,7 @@ public @Nullable class GuildConfig {
     public String getInitialChannel() {
         return this.initialChannel;
     }
-    public List<String> getRolesAllowedToClose() {
+    public String[] getRolesAllowedToClose() {
         return this.rolesAllowedToClose;
     }
     public String getId() {
@@ -40,13 +41,13 @@ public @Nullable class GuildConfig {
         return this.maxOpen;
     }
 
-    public GuildConfig(boolean authorCanClose, String defaultReaction, String initialChannel, String rolesAllowedToClose, String id, int maxOpen) {
+    public GuildConfig(boolean authorCanClose, String defaultReaction, String initialChannel, String[] rolesAllowedToClose, String id, int maxOpen) {
         this.authorCanClose = authorCanClose;
         this.defaultReaction = defaultReaction;
         this.id = id;
         this.initialChannel = initialChannel;
         this.maxOpen = maxOpen;
-        this.rolesAllowedToClose = Arrays.asList(rolesAllowedToClose.split(","));
+        this.rolesAllowedToClose = rolesAllowedToClose;
     }
 
     public void write() {
@@ -64,16 +65,13 @@ public @Nullable class GuildConfig {
     public static GuildConfig get(String guildId) {
         var gson = new GsonBuilder().setPrettyPrinting().create();
         var f = ConfigUtil.getGuildConfigFile(guildId);
-        Scanner sc;
         try {
-            sc = new Scanner(f);
-        } catch (FileNotFoundException e) {
+            return gson.fromJson(FileUtils.readFileToString(f, Charset.forName("UTF-8")), GuildConfig.class);
+        } catch (IOException e) {
             SupportBot.getLogger().error("Couldn't find the config for guild " + guildId + "!");
             e.printStackTrace();
             return null;
         }
-        sc.useDelimiter("\\Z");
-        return gson.fromJson(sc.next(), GuildConfig.class);
     }
 
 }

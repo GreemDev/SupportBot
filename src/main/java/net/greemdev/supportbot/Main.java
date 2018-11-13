@@ -1,8 +1,7 @@
 package net.greemdev.supportbot;
 
 import net.greemdev.supportbot.objects.BotConfig;
-
-import java.io.File;
+import net.greemdev.supportbot.util.ConfigUtil;
 
 public class Main {
 
@@ -14,11 +13,10 @@ public class Main {
             );
         }
 
-        if (!(new File("data/config.json").exists())) {
+        if (!ConfigUtil.getBotConfigFile().exists()) {
             BotConfig.write();
-            SupportBot.getLogger().error("Config didn't exist, so I created it for you. Fill in the file and restart the bot to continue.");
+            SupportBot.getLogger().error("Config didn't exist, so I created it for you. Fill in the file and restart to continue.");
             System.exit(1);
-            return;
         }
         new SupportBot();
     }

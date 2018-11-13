@@ -2,6 +2,7 @@ package net.greemdev.supportbot.objects;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import lombok.Getter;
 import net.greemdev.supportbot.SupportBot;
 import net.greemdev.supportbot.util.ConfigUtil;
 import org.apache.commons.io.FileUtils;
@@ -19,6 +20,7 @@ public class BotConfig {
     private String game;
     private String commandPrefix;
     private String ownerId;
+    private boolean logCommands;
     private List<String> blacklistedServerOwners;
 
     private BotConfig() {
@@ -26,6 +28,7 @@ public class BotConfig {
         this.commandPrefix = "your-prefix-here";
         this.game = "your-game-here";
         this.ownerId = "your-user-id-here";
+        this.logCommands = false;
         this.blacklistedServerOwners = Arrays.asList("user id 1", "user id 2", "...");
     }
 
@@ -40,6 +43,9 @@ public class BotConfig {
     }
     public String getOwnerId() {
         return this.ownerId;
+    }
+    public boolean getLogCommands() {
+        return this.logCommands;
     }
     public List<String> getBlacklistedServerOwners() {
         return this.blacklistedServerOwners;

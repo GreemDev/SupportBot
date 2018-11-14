@@ -9,6 +9,7 @@ import net.greemdev.supportbot.objects.GuildConfig;
 import net.greemdev.supportbot.util.ConfigUtil;
 import net.greemdev.supportbot.util.FormatUtil;
 import net.greemdev.supportbot.util.ParserUtil;
+import org.apache.commons.io.FileExistsException;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -43,15 +44,21 @@ class SetupListener {
         var maxOpen = ParserUtil.getInt(c.sendMessage("How many tickets can be open at any time?").complete().getTextChannel(), event.getAuthor());
         String[] rolesAllowed = new String[0];
         while (rolesAllowed.length == 0) {
-            event.getChannel().sendMessage("Send a comma-separated list of role names in this server that you want to be able to close tickets. \n\nAvailable Roles: `" + event.getGuild().getRoles().stream().map(Role::getName).filter(r -> !r.equals("@everyone")).collect(Collectors.joining(" ,")) + "`").queue();
+            event.getChannel().sendMessage("Send a comma-separated list of role names in this server that you want to be able to help with and close tickets. \n\nAvailable Roles: `" + event.getGuild().getRoles().stream().map(Role::getName).filter(r -> !r.equals("@everyone")).collect(Collectors.joining(", ")) + "`").queue();
             rolesAllowed = Arrays.stream(ParserUtil.getGuildMessageReceived(event.getAuthor()).getMessage().getContentRaw().split(","))
                     .map(s -> ParserUtil.getRoleByName(event.getGuild(), s))
                     .filter(Objects::nonNull)
                     .map(ISnowflake::getId)
                     .toArray(String[]::new);
         }
+        try {
+            GuildConfig.create(authorCanClose, event.getChannel().getName() ,defaultReaction, initialChannel, rolesAllowed, event.getGuild().getId(), maxOpen).write();
+        } catch (FileExistsException e) {
+            e.printStackTrace();
+            event.getChannel().sendMessage("Failed to create your config file: " + e.getMessage()).queue();
+            return;
+        }
 
-        new GuildConfig(authorCanClose, defaultReaction, initialChannel, rolesAllowed, event.getGuild().getId(), maxOpen).write();
         event.getChannel().deleteMessages(event.getChannel().getHistory().retrievePast(100).complete()).complete();
         event.getChannel().sendMessage("This server and channel has been setup for the support system! " +
                 "Take the time to send a message here instructing your members how to create a support ticket. " +

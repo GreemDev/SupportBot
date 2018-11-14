@@ -20,6 +20,7 @@ public class BotConfig {
     private String game;
     private String commandPrefix;
     private String ownerId;
+    private int[] embedColourRGB;
     private boolean logCommands;
     private List<String> blacklistedServerOwners;
 
@@ -43,6 +44,9 @@ public class BotConfig {
     }
     public String getOwnerId() {
         return this.ownerId;
+    }
+    public int[] getEmbedColour() {
+        return this.embedColourRGB;
     }
     public boolean getLogCommands() {
         return this.logCommands;

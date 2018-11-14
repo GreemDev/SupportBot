@@ -48,5 +48,6 @@ public class Handler extends ListenerAdapter {
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         SetupListener.onMessage(event);
+        SupportChannelListener.onMessage(event);
     }
 }

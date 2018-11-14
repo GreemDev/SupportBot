@@ -1,24 +1,28 @@
 package net.greemdev.supportbot.objects;
 
 import com.google.gson.*;
+import net.dv8tion.jda.core.entities.TextChannel;
 import net.greemdev.supportbot.SupportBot;
 import net.greemdev.supportbot.util.ConfigUtil;
+import net.greemdev.supportbot.util.ObjectUtil;
+import org.apache.commons.io.FileExistsException;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public @Nullable class GuildConfig {
 
     private boolean authorCanClose;
+    private String supportChannelName;
     private String defaultReaction;
     private String initialChannel;
-    private String[] rolesAllowedToClose;
+    private String[] rolesAllowed;
     private String id;
     private int maxOpen;
 
@@ -31,8 +35,8 @@ public @Nullable class GuildConfig {
     public String getInitialChannel() {
         return this.initialChannel;
     }
-    public String[] getRolesAllowedToClose() {
-        return this.rolesAllowedToClose;
+    public String[] getRolesAllowed() {
+        return this.rolesAllowed;
     }
     public String getId() {
         return this.id;
@@ -40,26 +44,51 @@ public @Nullable class GuildConfig {
     public int getMaxOpen() {
         return this.maxOpen;
     }
+    public void setCanClose(boolean canClose) {
+        this.authorCanClose = canClose;
+    }
+    public void setDefaultReaction(String emote) {
+        this.defaultReaction = emote;
+    }
+    public void setInitialChannel(String id) {
+        this.initialChannel = id;
+    }
+    public void setRolesAllowed(String[] roles) {
+        this.rolesAllowed = roles;
+    }
+    public void setMaxOpen(int maxOpen) {
+        this.maxOpen = maxOpen;
+    }
 
-    public GuildConfig(boolean authorCanClose, String defaultReaction, String initialChannel, String[] rolesAllowedToClose, String id, int maxOpen) {
+    public GuildConfig(boolean authorCanClose, String supportChannelName, String defaultReaction, String initialChannel, String[] rolesAllowed, String id, int maxOpen) {
         this.authorCanClose = authorCanClose;
+        this.supportChannelName = supportChannelName;
         this.defaultReaction = defaultReaction;
         this.id = id;
         this.initialChannel = initialChannel;
         this.maxOpen = maxOpen;
-        this.rolesAllowedToClose = rolesAllowedToClose;
+        this.rolesAllowed = rolesAllowed;
     }
 
     public void write() {
         var file = ConfigUtil.getGuildConfigFile(this.id);
         var gson = new GsonBuilder().setPrettyPrinting().create();
+        if (file.exists()) {
+            file.delete();
+        }
         try {
-            FileUtils.write(file, gson.toJson(this), Charset.forName("UTF8"));
+            FileUtils.writeStringToFile(file, gson.toJson(this), Charset.forName("UTF8"));
         } catch(IOException e) {
             e.printStackTrace();
             SupportBot.getLogger().error("Couldn't write the data to the file " + file.getAbsolutePath() + "!");
         }
 
+    }
+
+    public static GuildConfig create(boolean canClose, String supportChannelName, String defaultReaction, String initialChannel, String[] rolesAllowed, String id, int maxOpen) throws FileExistsException {
+        if (ConfigUtil.getSetupGuilds().contains(id))
+            throw new FileExistsException("The file " + ConfigUtil.getGuildConfigFile(id).getAbsolutePath() + " already exists.");
+        return new GuildConfig(canClose, supportChannelName, defaultReaction, initialChannel, rolesAllowed, id, maxOpen);
     }
 
     public static GuildConfig get(String guildId) {
@@ -72,6 +101,13 @@ public @Nullable class GuildConfig {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<TextChannel> getOpenTickets() {
+        if (ObjectUtil.isNull(get(this.id))) return new ArrayList<>();
+        return SupportBot.getJda().getGuildById(this.id).getTextChannels().stream()
+                .filter(tc -> tc.getName().startsWith("support-") && StringUtils.isNumeric(tc.getName().split("-")[1]) && !ObjectUtil.isNull(SupportBot.getJda().getUserById(tc.getName().split("-")[1])))
+                .collect(Collectors.toList());
     }
 
 }

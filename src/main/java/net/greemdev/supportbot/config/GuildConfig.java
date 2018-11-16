@@ -1,8 +1,10 @@
-package net.greemdev.supportbot.objects;
+package net.greemdev.supportbot.config;
 
-import com.google.gson.*;
+import com.google.gson.GsonBuilder;
+import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.greemdev.supportbot.SupportBot;
+import net.greemdev.supportbot.events.SupportChannelListener;
 import net.greemdev.supportbot.util.ConfigUtil;
 import net.greemdev.supportbot.util.ObjectUtil;
 import org.apache.commons.io.FileExistsException;
@@ -10,7 +12,8 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,6 +94,10 @@ public @Nullable class GuildConfig {
         return new GuildConfig(canClose, supportChannelName, defaultReaction, initialChannel, rolesAllowed, id, maxOpen);
     }
 
+    public static GuildConfig get(Guild g) {
+        return get(g.getId());
+    }
+
     public static GuildConfig get(String guildId) {
         var gson = new GsonBuilder().setPrettyPrinting().create();
         var f = ConfigUtil.getGuildConfigFile(guildId);
@@ -104,10 +111,15 @@ public @Nullable class GuildConfig {
     }
 
     public List<TextChannel> getOpenTickets() {
+        ArrayList<TextChannel> tcList = new ArrayList<>();
         if (ObjectUtil.isNull(get(this.id))) return new ArrayList<>();
-        return SupportBot.getJda().getGuildById(this.id).getTextChannels().stream()
-                .filter(tc -> tc.getName().startsWith("support-") && StringUtils.isNumeric(tc.getName().split("-")[1]) && !ObjectUtil.isNull(SupportBot.getJda().getUserById(tc.getName().split("-")[1])))
-                .collect(Collectors.toList());
+        for (var tc : SupportBot.getJda().getGuildById(this.id).getTextChannels()) {
+            if (tc.getName().startsWith(this.supportChannelName) &&
+                    StringUtils.isNumeric(StringUtils.removeStart(tc.getName(), this.supportChannelName + "-"))) {
+                tcList.add(tc);
+            }
+        }
+        return tcList;
     }
 
 }

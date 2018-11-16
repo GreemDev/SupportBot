@@ -8,6 +8,9 @@ import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.greemdev.supportbot.SupportBot;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParserUtil {
 
     public static Event getEvent(Class<? extends Event> eventClass) {
@@ -81,6 +84,15 @@ public class ParserUtil {
         }
         return null;
     }
+
+    public static List<String> getRoleIds(Member m) {
+        ArrayList<String> roleIds = new ArrayList<>();
+        for (var role : m.getRoles()) {
+            roleIds.add(role.getId());
+        }
+        return roleIds;
+    }
+
 
     public static boolean getYesNo(Message m, User u) {
         m.addReaction(SupportBot.getClient().getSuccess()).queue();

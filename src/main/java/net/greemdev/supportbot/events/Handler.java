@@ -3,6 +3,7 @@ package net.greemdev.supportbot.events;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.events.ReadyEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.greemdev.supportbot.SupportBot;
 import net.greemdev.supportbot.util.FormatUtil;
@@ -49,5 +50,10 @@ public class Handler extends ListenerAdapter {
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
         SetupListener.onMessage(event);
         SupportChannelListener.onMessage(event);
+    }
+
+    @Override
+    public void onGuildMessageReactionAdd(GuildMessageReactionAddEvent event) {
+        SupportChannelListener.onReaction(event);
     }
 }

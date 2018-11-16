@@ -1,8 +1,7 @@
-package net.greemdev.supportbot.objects;
+package net.greemdev.supportbot.config;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import lombok.Getter;
 import net.greemdev.supportbot.SupportBot;
 import net.greemdev.supportbot.util.ConfigUtil;
 import org.apache.commons.io.FileUtils;

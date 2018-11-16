@@ -4,6 +4,7 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.greemdev.supportbot.commands.Categories;
+import net.greemdev.supportbot.config.GuildConfig;
 import net.greemdev.supportbot.events.Handler;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +26,7 @@ public class EvalCommand extends Command {
         se.put("self", event.getSelfUser());
         se.put("event", event);
         se.put("logger", LoggerFactory.getLogger(this.getClass()));
+        se.put("config", GuildConfig.get(event.getGuild()));
 
         if (event.getArgs().equals("")) {
             var m = new EmbedBuilder()

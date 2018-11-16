@@ -1,6 +1,6 @@
 package net.greemdev.supportbot;
 
-import net.greemdev.supportbot.objects.BotConfig;
+import net.greemdev.supportbot.config.BotConfig;
 import net.greemdev.supportbot.util.ConfigUtil;
 
 public class Main {

@@ -6,7 +6,7 @@ import net.dv8tion.jda.core.*;
 import net.dv8tion.jda.core.entities.Game;
 import net.greemdev.supportbot.commands.CommandRegistry;
 import net.greemdev.supportbot.events.Handler;
-import net.greemdev.supportbot.config.BotConfig;
+import net.greemdev.supportbot.files.BotConfig;
 import net.greemdev.supportbot.util.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,7 +52,7 @@ public class SupportBot {
                 .setEmojis(EmojiUtil.BALLOT_BOX_WITH_CHECK, EmojiUtil.WARNING, EmojiUtil.X)
                 .setHelpWord("help")
                 .addCommands(
-                        CommandRegistry.evalCommand
+                        CommandRegistry.eval
                 )
                 .setLinkedCacheSize(200)
                 .build();

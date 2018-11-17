@@ -7,11 +7,10 @@ import net.dv8tion.jda.core.entities.TextChannel;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.greemdev.supportbot.SupportBot;
-import net.greemdev.supportbot.config.GuildConfig;
+import net.greemdev.supportbot.files.GuildConfig;
 import net.greemdev.supportbot.util.ConfigUtil;
 import net.greemdev.supportbot.util.FormatUtil;
 import net.greemdev.supportbot.util.ObjectUtil;
-import net.greemdev.supportbot.util.ParserUtil;
 
 import java.awt.*;
 import java.util.Arrays;
@@ -22,17 +21,22 @@ public class SupportChannelListener {
 
     public static void onMessage(GuildMessageReceivedEvent event) {
         if (ObjectUtil.isNull(event.getMember()) ||
-                event.getMember().isOwner()
-            /*event.getMember().getUser().isBot()*/) return;
+                /*event.getMember().isOwner()*/
+            event.getMember().getUser().isBot()) return;
 
         if (ConfigUtil.getGuildConfigFile(event.getGuild().getId()).exists() &&
                 !ObjectUtil.isNull(GuildConfig.get(event.getGuild().getId()).getInitialChannel())) {
             var conf = GuildConfig.get(event.getGuild().getId());
-            if (conf.getMaxOpen() > 0 && conf.getOpenTickets().size() >= conf.getMaxOpen()) return;
+            if (conf.getMaxOpen() > 0 && conf.getOpenTickets().size() >= conf.getMaxOpen()) {
+                event.getChannel().sendMessage("I couldn't create a ticket for you " +
+                        event.getAuthor().getAsMention() + ", because this server's open tickets limit has been reached. " +
+                        "Please try again later.").queue(m -> m.delete().queueAfter(2, TimeUnit.MINUTES));
+                return;
+            }
             if (event.getChannel().getId().equals(conf.getInitialChannel())) {
                 var maybeTheirTickets = event.getGuild().getTextChannelsByName(event.getChannel().getName() + "-" + event.getMember().getUser().getId(), true);
                 if (maybeTheirTickets.size() > 0) {
-                    maybeTheirTickets.get(0).sendMessage(event.getAuthor().getAsMention() + ", please send messages here instead of the main channel. If you need a new ticket, mark this one as solved and send a message in " + event.getChannel().getAsMention() + " again.").queue();
+                    maybeTheirTickets.get(0).sendMessage(event.getAuthor().getAsMention() + ", please send messages here instead of the main channel. If you need a new ticket, mark this one as solved and send a message in " + event.getChannel().getAsMention() + " again.\nMessage: `" + event.getMessage().getContentRaw() + "`").queue();
                     event.getMessage().delete().queue();
                     return;
                 }

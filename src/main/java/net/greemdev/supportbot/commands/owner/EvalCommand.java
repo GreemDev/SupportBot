@@ -4,7 +4,7 @@ import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.greemdev.supportbot.commands.Categories;
-import net.greemdev.supportbot.config.GuildConfig;
+import net.greemdev.supportbot.files.GuildConfig;
 import net.greemdev.supportbot.events.Handler;
 import org.slf4j.LoggerFactory;
 

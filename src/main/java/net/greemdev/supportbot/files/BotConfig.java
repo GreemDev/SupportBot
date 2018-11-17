@@ -1,4 +1,4 @@
-package net.greemdev.supportbot.config;
+package net.greemdev.supportbot.files;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

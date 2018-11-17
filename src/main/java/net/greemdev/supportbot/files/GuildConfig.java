@@ -1,10 +1,9 @@
-package net.greemdev.supportbot.config;
+package net.greemdev.supportbot.files;
 
 import com.google.gson.GsonBuilder;
 import net.dv8tion.jda.core.entities.Guild;
 import net.dv8tion.jda.core.entities.TextChannel;
 import net.greemdev.supportbot.SupportBot;
-import net.greemdev.supportbot.events.SupportChannelListener;
 import net.greemdev.supportbot.util.ConfigUtil;
 import net.greemdev.supportbot.util.ObjectUtil;
 import org.apache.commons.io.FileExistsException;
@@ -13,11 +12,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public @Nullable class GuildConfig {
 

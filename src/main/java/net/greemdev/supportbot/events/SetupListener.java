@@ -5,10 +5,8 @@ import net.dv8tion.jda.core.entities.ISnowflake;
 import net.dv8tion.jda.core.entities.Role;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.greemdev.supportbot.SupportBot;
-import net.greemdev.supportbot.config.GuildConfig;
-import net.greemdev.supportbot.util.ConfigUtil;
-import net.greemdev.supportbot.util.FormatUtil;
-import net.greemdev.supportbot.util.ParserUtil;
+import net.greemdev.supportbot.files.GuildConfig;
+import net.greemdev.supportbot.util.*;
 import org.apache.commons.io.FileExistsException;
 
 import java.util.Arrays;

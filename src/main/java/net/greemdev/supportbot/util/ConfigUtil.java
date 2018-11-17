@@ -3,7 +3,7 @@ package net.greemdev.supportbot.util;
 import com.google.gson.GsonBuilder;
 import net.dv8tion.jda.core.entities.Game;
 import net.greemdev.supportbot.SupportBot;
-import net.greemdev.supportbot.config.GuildConfig;
+import net.greemdev.supportbot.files.GuildConfig;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;

@@ -52,7 +52,9 @@ public class SupportBot {
                 .setEmojis(EmojiUtil.BALLOT_BOX_WITH_CHECK, EmojiUtil.WARNING, EmojiUtil.X)
                 .setHelpWord("help")
                 .addCommands(
-                        CommandRegistry.eval
+                        CommandRegistry.eval,
+                        CommandRegistry.setMaxOpenTickets,
+                        CommandRegistry.setDefaultReaction
                 )
                 .setLinkedCacheSize(200)
                 .build();
@@ -62,8 +64,8 @@ public class SupportBot {
                     .setToken(BotConfig.get().getToken())
                     .setAudioEnabled(false)
                     .addEventListener(new Handler(), c, new EventWaiter())
-                    .build().awaitReady();
-        } catch (LoginException | InterruptedException e) {
+                    .build();
+        } catch (LoginException e) {
             e.printStackTrace();
             getLogger().error("Failed to login.");
             System.exit(1);

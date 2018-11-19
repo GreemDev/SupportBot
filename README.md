@@ -1,4 +1,4 @@
-SupportBot | ![build status](https://code.greemdev.net/root/SupportBot/build/master/badge.svg)
+# SupportBot
 
 A simple, easy-to-use, open-source Discord bot written in Java for helping your users when they need it.
 

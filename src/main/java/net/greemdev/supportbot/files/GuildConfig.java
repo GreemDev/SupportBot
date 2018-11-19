@@ -16,7 +16,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public @Nullable class GuildConfig {
+public class GuildConfig {
 
     private boolean authorCanClose;
     private String supportChannelName;
@@ -73,12 +73,10 @@ public @Nullable class GuildConfig {
     public void write() {
         var file = ConfigUtil.getGuildConfigFile(this.id);
         var gson = new GsonBuilder().setPrettyPrinting().create();
-        if (file.exists()) {
-            file.delete();
-        }
+        if (file.exists()) file.delete();
         try {
             FileUtils.writeStringToFile(file, gson.toJson(this), Charset.forName("UTF8"));
-        } catch(IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             SupportBot.getLogger().error("Couldn't write the data to the file " + file.getAbsolutePath() + "!");
         }

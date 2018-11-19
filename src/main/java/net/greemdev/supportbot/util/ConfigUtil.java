@@ -1,6 +1,7 @@
 package net.greemdev.supportbot.util;
 
 import com.google.gson.GsonBuilder;
+import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.entities.Game;
 import net.greemdev.supportbot.SupportBot;
 import net.greemdev.supportbot.files.GuildConfig;
@@ -67,6 +68,16 @@ public class ConfigUtil {
                 break;
             }
         }
+    }
+
+    public static boolean catchConfigNull(CommandEvent event) {
+        var exists = ConfigUtil.getGuildConfigFile(event.getGuild().getId()).exists();
+        if (!exists) {
+            event.reply("You haven't setup this server for support tickets. " +
+                    "Send `setupsupport` in your desired start channel and try again after setup.");
+            return false;
+        }
+        return exists;
     }
 
 }

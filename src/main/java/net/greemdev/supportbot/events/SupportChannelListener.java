@@ -16,10 +16,10 @@ import java.awt.*;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
-public class SupportChannelListener {
+class SupportChannelListener {
 
 
-    public static void onMessage(GuildMessageReceivedEvent event) {
+    static void onMessage(GuildMessageReceivedEvent event) {
         if (ObjectUtil.isNull(event.getMember()) ||
                 /*event.getMember().isOwner()*/
             event.getMember().getUser().isBot()) return;
@@ -41,17 +41,17 @@ public class SupportChannelListener {
                     return;
                 }
 
-                new Thread(() -> handleNew(event)).start();
+                new Thread(() -> handleNew(event, conf)).start();
             }
         }
     }
 
-    public static void onReaction(GuildMessageReactionAddEvent event) {
+    static void onReaction(GuildMessageReactionAddEvent event) {
         var conf = GuildConfig.get(event.getGuild());
         if (event.getUser().isBot() || !conf.getOpenTickets().contains(event.getChannel())) return;
         if (event.getChannel().getMessageById(event.getMessageId())
                 .complete().getAuthor().getId().equals(event.getJDA().getSelfUser().getId())) {
-            if (event.getReaction().getReactionEmote().getName().equals(SupportBot.getClient().getSuccess())) {
+            if (event.getReaction().getReactionEmote().getName().equals(conf.getDefaultReaction())) {
                 new Thread(() -> handleDelete(event)).start();
             }
         }
@@ -71,7 +71,7 @@ public class SupportChannelListener {
         }
     }
 
-    private static void handleNew(GuildMessageReceivedEvent event) {
+    private static void handleNew(GuildMessageReceivedEvent event, GuildConfig c) {
         String newChannelName = event.getChannel().getName() + "-" + event.getAuthor().getId();
         TextChannel newTc;
         if (ObjectUtil.isNull(event.getChannel().getParent())) {
@@ -82,6 +82,12 @@ public class SupportChannelListener {
         event.getGuild().getController().modifyTextChannelPositions().selectPosition(newTc).moveTo(event.getChannel().getPosition() + 1).queue();
 
         newTc.createPermissionOverride(event.getMember()).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE).queue();
+
+        for (var roleId : c.getRolesAllowed()) {
+            var role = event.getGuild().getRoleById(roleId);
+            if (ObjectUtil.isNull(role)) continue;
+            newTc.createPermissionOverride(role).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE).complete();
+        }
 
         var rgb = SupportBot.getBotConfig().getEmbedColour();
         var embed = new EmbedBuilder()

@@ -44,20 +44,25 @@ public class GuildConfig {
     public int getMaxOpen() {
         return this.maxOpen;
     }
-    public void setCanClose(boolean canClose) {
+    public GuildConfig setCanClose(boolean canClose) {
         this.authorCanClose = canClose;
+        return this;
     }
-    public void setDefaultReaction(String emote) {
+    public GuildConfig setDefaultReaction(String emote) {
         this.defaultReaction = emote;
+        return this;
     }
-    public void setInitialChannel(String id) {
+    public GuildConfig setInitialChannel(String id) {
         this.initialChannel = id;
+        return this;
     }
-    public void setRolesAllowed(String[] roles) {
+    public GuildConfig setRolesAllowed(String[] roles) {
         this.rolesAllowed = roles;
+        return this;
     }
-    public void setMaxOpen(int maxOpen) {
+    public GuildConfig setMaxOpen(int maxOpen) {
         this.maxOpen = maxOpen;
+        return this;
     }
 
     public GuildConfig(boolean authorCanClose, String supportChannelName, String defaultReaction, String initialChannel, String[] rolesAllowed, String id, int maxOpen) {

@@ -19,8 +19,7 @@ public class SetMaxOpenTicketsCmd extends Command {
         var conf = GuildConfig.get(event.getGuild());
         if (ConfigUtil.catchConfigNull(event)) {
             try {
-                conf.setMaxOpen(Integer.parseInt(event.getArgs()));
-                conf.write();
+                conf.setMaxOpen(Integer.parseInt(event.getArgs())).write();
             } catch (NumberFormatException e) {
                 event.reply("You must enter a number; nothing else. You entered " + event.getArgs());
                 return;

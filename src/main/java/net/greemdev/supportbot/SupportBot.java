@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
+import java.io.File;
 
 public class SupportBot {
     /**
@@ -54,7 +55,8 @@ public class SupportBot {
                 .addCommands(
                         CommandRegistry.eval,
                         CommandRegistry.setMaxOpenTickets,
-                        CommandRegistry.setDefaultReaction
+                        CommandRegistry.setDefaultReaction,
+                        CommandRegistry.setAllowedRolesCmd
                 )
                 .setLinkedCacheSize(200)
                 .build();
@@ -72,5 +74,7 @@ public class SupportBot {
         }
         ConfigUtil.parseGame();
     }
+
+
 
 }

@@ -30,11 +30,12 @@ public class ConfigUtil {
         for (File f : new File("data/guilds").listFiles()) {
             try {
                 conf = gson.fromJson(FileUtils.readFileToString(f, Charset.forName("UTF8")), GuildConfig.class);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }
-            guildIds.add(ObjectUtil.isNull(conf) ? conf.getId() : null);
+                if (ObjectUtil.isNull(conf)) {
+                    continue;
+                } else {
+                    guildIds.add(ObjectUtil.isNull(conf) ? conf.getId() : null);
+                }
+            } catch (IOException ignored) {}
         }
         return guildIds;
     }

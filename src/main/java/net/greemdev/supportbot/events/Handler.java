@@ -6,8 +6,11 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.greemdev.supportbot.SupportBot;
+import net.greemdev.supportbot.util.ConfigUtil;
 import net.greemdev.supportbot.util.FormatUtil;
 import org.slf4j.Logger;
+
+import java.io.File;
 import java.util.Date;
 
 public class Handler extends ListenerAdapter {
@@ -41,6 +44,7 @@ public class Handler extends ListenerAdapter {
         this.logger.info("       Logged in as " + FormatUtil.getUserString(event.getJDA().getSelfUser()) + ".");
         this.logger.info("       Connected to " + event.getJDA().getGuilds().size() + plural);
         this.logger.info("       Connected to " + event.getJDA().getUsers().size() + " users.");
+        this.printSupportInfo();
         this.logger.info("| Now accepting commands.");
 
         GenericListener.onReady(event);
@@ -55,5 +59,12 @@ public class Handler extends ListenerAdapter {
     @Override
     public void onGuildMessageReactionAdd(GuildMessageReactionAddEvent event) {
         SupportChannelListener.onReaction(event);
+    }
+
+    private void printSupportInfo() {
+        int guilds = ConfigUtil.getSetupGuilds().size();
+        String pluralGuild = (guilds != 1) ? " guilds are" : " guild is";
+        var l = SupportBot.getLogger();
+        l.info("Currently, " + guilds + pluralGuild + " setup.");
     }
 }

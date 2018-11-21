@@ -28,7 +28,7 @@ class SupportChannelListener {
                 !ObjectUtil.isNull(GuildConfig.get(event.getGuild().getId()).getInitialChannel())) {
             var conf = GuildConfig.get(event.getGuild().getId());
             if (conf.getMaxOpen() > 0 && conf.getOpenTickets().size() >= conf.getMaxOpen()) {
-                event.getChannel().sendMessage("I couldn't create a ticket for you " +
+                event.getChannel().sendMessage("I couldn't create a ticket for you, " +
                         event.getAuthor().getAsMention() + ", because this server's open tickets limit has been reached. " +
                         "Please try again later.").queue(m -> m.delete().queueAfter(2, TimeUnit.MINUTES));
                 return;
@@ -48,6 +48,7 @@ class SupportChannelListener {
 
     static void onReaction(GuildMessageReactionAddEvent event) {
         var conf = GuildConfig.get(event.getGuild());
+        if (conf == null) return;
         if (event.getUser().isBot() || !conf.getOpenTickets().contains(event.getChannel())) return;
         if (event.getChannel().getMessageById(event.getMessageId())
                 .complete().getAuthor().getId().equals(event.getJDA().getSelfUser().getId())) {

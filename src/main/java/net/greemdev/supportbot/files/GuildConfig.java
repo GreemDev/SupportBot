@@ -102,6 +102,7 @@ public class GuildConfig {
         var gson = new GsonBuilder().setPrettyPrinting().create();
         var f = ConfigUtil.getGuildConfigFile(guildId);
         try {
+            if (!ConfigUtil.getGuildConfigFile(guildId).exists()) { return null; }
             return gson.fromJson(FileUtils.readFileToString(f, Charset.forName("UTF-8")), GuildConfig.class);
         } catch (IOException e) {
             SupportBot.getLogger().error("Couldn't find the config for guild " + guildId + "!");

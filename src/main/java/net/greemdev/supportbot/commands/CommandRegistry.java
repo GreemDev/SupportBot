@@ -13,5 +13,6 @@ public class CommandRegistry {
     //Admin commands
     public static SetMaxOpenTicketsCmd setMaxOpenTickets = new SetMaxOpenTicketsCmd();
     public static SetDefaultReactionCmd setDefaultReaction = new SetDefaultReactionCmd();
+    public static SetAllowedRolesCmd setAllowedRolesCmd = new SetAllowedRolesCmd();
 
 }

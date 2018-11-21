@@ -20,6 +20,7 @@ public class EvalCommand extends Command {
     }
 
     @Override
+    @SuppressWarnings("SpellCheckingInspection")
     protected void execute(CommandEvent event) {
         ScriptEngine se = new ScriptEngineManager().getEngineByName("js");
         se.put("jda", event.getJDA());
@@ -35,7 +36,8 @@ public class EvalCommand extends Command {
                     .addField("jda", "[interface net.dv8tion.jda.core.JDA](http://home.dv8tion.net:8080/job/JDA/javadoc/net/dv8tion/jda/core/JDA.html)", false)
                     .addField("self", "[interface net.dv8tion.jda.core.entities.SelfUser](http://home.dv8tion.net:8080/job/JDA/javadoc/net/dv8tion/jda/core/entities/SelfUser.html)", false)
                     .addField("event", "class com.jagrosh.jdautilities.command.CommandEvent", false)
-                    .addField("logger", "interface org.slf4j.Logger", false);
+                    .addField("logger", "interface org.slf4j.Logger", false)
+                    .addField("config", "class net.greemdev.supportbot.files.GuildConfig", false);
             event.reply(m.build());
             return;
         }

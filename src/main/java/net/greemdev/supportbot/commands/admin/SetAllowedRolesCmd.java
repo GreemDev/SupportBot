@@ -2,16 +2,16 @@ package net.greemdev.supportbot.commands.admin;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import net.dv8tion.jda.core.entities.ISnowflake;
 import net.greemdev.supportbot.commands.Categories;
 import net.greemdev.supportbot.events.Handler;
 import net.greemdev.supportbot.files.GuildConfig;
 import net.greemdev.supportbot.util.ConfigUtil;
-import net.greemdev.supportbot.util.ObjectUtil;
 import net.greemdev.supportbot.util.ParserUtil;
 
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
-@Deprecated // for now. no clue why this just refuses to write to the config file. will fix for V1 release.
 public class SetAllowedRolesCmd extends Command {
 
     public SetAllowedRolesCmd() {
@@ -23,19 +23,18 @@ public class SetAllowedRolesCmd extends Command {
 
     @Override
     protected void execute(CommandEvent event) {
-        var rolesAllowed = new ArrayList<String>();
+        var rolesAllowed = new String[0];
         var conf = GuildConfig.get(event.getGuild());
         if (ConfigUtil.catchConfigNull(event)) {
-            for (var roleName : event.getArgs().split(",")) {
-                var role = ParserUtil.getRoleByName(event.getGuild(), roleName);
-                if (ObjectUtil.isNull(role)) {
-                    continue;
-                }
-                rolesAllowed.add(role.getId());
-            }
-            conf.setRolesAllowed(rolesAllowed.toArray(new String[]{})).write();
+            rolesAllowed = Arrays.stream(event.getArgs().split(","))
+                    .map(s -> ParserUtil.getRoleByName(event.getGuild(), s.trim()))
+                    .filter(Objects::nonNull)
+                    .map(ISnowflake::getId)
+                    .toArray(String[]::new);
             event.reply("Set `" + event.getArgs() + "` as the roles allowed to access support tickets.");
+            conf.setRolesAllowed(rolesAllowed).write();
         }
         Handler.onCommand(event);
     }
 }
+

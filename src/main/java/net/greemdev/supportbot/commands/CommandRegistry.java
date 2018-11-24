@@ -1,18 +1,28 @@
 package net.greemdev.supportbot.commands;
 
-import net.greemdev.supportbot.commands.admin.SetAllowedRolesCmd;
-import net.greemdev.supportbot.commands.admin.SetDefaultReactionCmd;
-import net.greemdev.supportbot.commands.admin.SetMaxOpenTicketsCmd;
-import net.greemdev.supportbot.commands.owner.EvalCommand;
+import com.jagrosh.jdautilities.command.Command;
+import net.greemdev.supportbot.commands.admin.*;
+import net.greemdev.supportbot.commands.owner.*;
 
 public class CommandRegistry {
 
+    public static Command[] getAllCommands() {
+        return new Command[] {
+                eval,
+
+                setMaxOpenTicketsCmd, setDefaultReactionCmd, setAllowedRolesCmd, setAuthorCanCloseCmd
+        };
+    }
+
     // Owner commands
-    public static EvalCommand eval = new EvalCommand();
+    public static EvalCmd eval = new EvalCmd();
 
     //Admin commands
-    public static SetMaxOpenTicketsCmd setMaxOpenTickets = new SetMaxOpenTicketsCmd();
-    public static SetDefaultReactionCmd setDefaultReaction = new SetDefaultReactionCmd();
+    public static SetMaxOpenTicketsCmd setMaxOpenTicketsCmd = new SetMaxOpenTicketsCmd();
+    public static SetDefaultReactionCmd setDefaultReactionCmd = new SetDefaultReactionCmd();
     public static SetAllowedRolesCmd setAllowedRolesCmd = new SetAllowedRolesCmd();
+    public static SetAuthorCanCloseCmd setAuthorCanCloseCmd = new SetAuthorCanCloseCmd();
+
+    //General commands
 
 }

@@ -66,13 +66,13 @@ public class GuildConfig {
     }
 
     public GuildConfig(boolean authorCanClose, String supportChannelName, String defaultReaction, String initialChannel, String[] rolesAllowed, String id, int maxOpen) {
-        this.authorCanClose = authorCanClose;
-        this.supportChannelName = supportChannelName;
-        this.defaultReaction = defaultReaction;
-        this.id = id;
-        this.initialChannel = initialChannel;
-        this.maxOpen = maxOpen;
-        this.rolesAllowed = rolesAllowed;
+            this.setCanClose(authorCanClose)
+                .setRolesAllowed(rolesAllowed)
+                .setMaxOpen(maxOpen)
+                .setDefaultReaction(defaultReaction);
+            this.supportChannelName = supportChannelName;
+            this.initialChannel = initialChannel;
+            this.id = id;
     }
 
     public void write() {

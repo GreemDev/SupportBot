@@ -11,9 +11,9 @@ import org.slf4j.LoggerFactory;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
-public class EvalCommand extends Command {
+public class EvalCmd extends Command {
 
-    public EvalCommand() {
+    public EvalCmd() {
         this.name = "eval";
         this.help = "Executes JavaScript code.";
         this.category = Categories.owner;

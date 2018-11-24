@@ -24,7 +24,7 @@ public class SetMaxOpenTicketsCmd extends Command {
                 event.reply("You must enter a number; nothing else. You entered " + event.getArgs());
                 return;
             }
-            event.reply("Set the maximum open tickets for this server to " + event.getArgs());
+            event.reply("Set `maxOpen` to " + event.getArgs());
         }
 
 

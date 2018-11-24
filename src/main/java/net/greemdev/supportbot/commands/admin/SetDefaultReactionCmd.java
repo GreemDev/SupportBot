@@ -19,28 +19,24 @@ public class SetDefaultReactionCmd extends Command {
 
     @Override
     protected void execute(CommandEvent event) {
-        var conf = GuildConfig.get(event.getGuild());
+        Handler.onCommand(event);
         if (ConfigUtil.catchConfigNull(event)) {
-            var firstArg = event.getArgs().split(" ")[0];
             if (event.getArgs().split(" ").length > 0) {
                 if (!EmojiManager.isEmoji(event.getArgs().split(" ")[0])) {
                     event.reply("You didn't enter an emoji.");
-                    Handler.onCommand(event);
                     return;
                 }
             }
-            if (!EmojiManager.isEmoji(firstArg) || !EmojiManager.isEmoji(event.getArgs())) {
+            if (!EmojiManager.isEmoji(event.getArgs().split(" ")[0]) || !EmojiManager.isEmoji(event.getArgs())) {
                 event.reply("You didn't enter an emoji.");
-                Handler.onCommand(event);
                 return;
             }
             if (event.getMessage().getEmotes().size() > 0) {
                 event.reply("You entered a custom server emoji; I don't support those as of yet.");
-                Handler.onCommand(event);
                 return;
             }
-            conf.setDefaultReaction(event.getArgs()).write();
+            GuildConfig.get(event.getGuild()).setDefaultReaction(event.getArgs()).write();
+            event.reply("Set `defaultReaction` to " + event.getArgs());
         }
-        Handler.onCommand(event);
     }
 }

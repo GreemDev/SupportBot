@@ -76,7 +76,6 @@ public class ConfigUtil {
         if (!exists) {
             event.reply("You haven't setup this server for support tickets. " +
                     "Send `setupsupport` in your desired start channel and try again after setup.");
-            return false;
         }
         return exists;
     }

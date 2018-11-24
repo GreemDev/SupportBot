@@ -31,7 +31,7 @@ public class SetAllowedRolesCmd extends Command {
                     .filter(Objects::nonNull)
                     .map(ISnowflake::getId)
                     .toArray(String[]::new);
-            event.reply("Set `" + event.getArgs() + "` as the roles allowed to access support tickets.");
+            event.reply("Set `rolesAllowed` to " + event.getArgs());
             conf.setRolesAllowed(rolesAllowed).write();
         }
         Handler.onCommand(event);

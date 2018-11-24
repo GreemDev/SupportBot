@@ -69,4 +69,13 @@
             <version>3.1.3</version>
         </dependency>
     </dependencies>
+    <developers>
+        <developer>
+            <id>hustedev</id>
+            <name>Evan Husted</name>
+            <email>evan.husted@greem.me</email>
+            <organization>GreemDev</organization>
+            <organizationUrl>https://greemdev.net</organizationUrl>
+        </developer>
+    </developers>
 </project>

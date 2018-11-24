@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
-import java.io.File;
 
 public class SupportBot {
     /**
@@ -38,6 +37,9 @@ public class SupportBot {
     public static CommandClient getClient() {
         return c;
     }
+    public static String getVersion() {
+        return "0.1-DEV";
+    }
 
     public SupportBot() {
         this.start();
@@ -52,12 +54,7 @@ public class SupportBot {
                 .setOwnerId(getBotConfig().getOwnerId())
                 .setEmojis(EmojiUtil.BALLOT_BOX_WITH_CHECK, EmojiUtil.WARNING, EmojiUtil.X)
                 .setHelpWord("help")
-                .addCommands(
-                        CommandRegistry.eval,
-                        CommandRegistry.setMaxOpenTickets,
-                        CommandRegistry.setDefaultReaction,
-                        CommandRegistry.setAllowedRolesCmd
-                )
+                .addCommands(CommandRegistry.getAllCommands())
                 .setLinkedCacheSize(200)
                 .build();
 
@@ -65,6 +62,7 @@ public class SupportBot {
             jda = new JDABuilder(AccountType.BOT)
                     .setToken(BotConfig.get().getToken())
                     .setAudioEnabled(false)
+                    .setAutoReconnect(true)
                     .addEventListener(new Handler(), c, new EventWaiter())
                     .build();
         } catch (LoginException e) {
@@ -72,7 +70,6 @@ public class SupportBot {
             getLogger().error("Failed to login.");
             System.exit(1);
         }
-        ConfigUtil.parseGame();
     }
 
 

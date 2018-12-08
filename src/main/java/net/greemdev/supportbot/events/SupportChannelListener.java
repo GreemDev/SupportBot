@@ -9,10 +9,10 @@ import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEv
 import net.greemdev.supportbot.SupportBot;
 import net.greemdev.supportbot.files.GuildConfig;
 import net.greemdev.supportbot.util.ConfigUtil;
+import net.greemdev.supportbot.util.EmojiUtil;
 import net.greemdev.supportbot.util.FormatUtil;
 import net.greemdev.supportbot.util.ObjectUtil;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
@@ -21,8 +21,8 @@ class SupportChannelListener {
 
     static void onMessage(GuildMessageReceivedEvent event) {
         if (ObjectUtil.isNull(event.getMember()) ||
-                /*event.getMember().isOwner()*/
-            event.getMember().getUser().isBot()) return;
+                //event.getMember().isOwner()
+                event.getMember().getUser().isBot()) return;
 
         if (ConfigUtil.getGuildConfigFile(event.getGuild().getId()).exists() &&
                 !ObjectUtil.isNull(GuildConfig.get(event.getGuild().getId()).getInitialChannel())) {
@@ -55,7 +55,18 @@ class SupportChannelListener {
             if (event.getReaction().getReactionEmote().getName().equals(conf.getDefaultReaction())) {
                 new Thread(() -> handleDelete(event)).start();
             }
+            if (event.getReaction().getReactionEmote().getName().equals(EmojiUtil.MICROPHONE)) {
+                new Thread(() -> handleVoiceChat(event)).start();
+            }
         }
+    }
+
+    private static void handleVoiceChat(GuildMessageReactionAddEvent event) {
+        var targetVc = event.getGuild().getVoiceChannelsByName(event.getChannel().getName(), true);
+        if (targetVc.size() < 1) {
+            event.getChannel().getParent().createVoiceChannel(event.getChannel().getName()).queue();
+        }
+
     }
 
     private static void handleDelete(GuildMessageReactionAddEvent event) {
@@ -64,6 +75,14 @@ class SupportChannelListener {
                 .setColor(event.getMember().getRoles().get(0).getColor())
                 .setDescription("This ticket has been marked as solved by " + FormatUtil.getUserString(event.getUser()) + ". Closing the ticket in two minutes.")
                 .setTitle("Ticket Marked as Solved");
+        try {
+            var targetVc = event.getGuild().getVoiceChannelsByName(event.getChannel().getName(), true).get(0);
+            if (!ObjectUtil.isNull(targetVc)) {
+                targetVc.delete().queue();
+            }
+        } catch (IndexOutOfBoundsException ignored) {
+            //ignore the exception, it just means that the voice channel doesn't exist.
+        }
 
         if (event.getMember().getRoles().stream().map(ISnowflake::getId).anyMatch(s ->
                 Arrays.asList(GuildConfig.get(event.getGuild()).getRolesAllowed()).contains(s))) {
@@ -87,17 +106,19 @@ class SupportChannelListener {
         for (var roleId : c.getRolesAllowed()) {
             var role = event.getGuild().getRoleById(roleId);
             if (ObjectUtil.isNull(role)) continue;
-            newTc.createPermissionOverride(role).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE).complete();
+            newTc.createPermissionOverride(role).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE).queue();
         }
 
-        var rgb = SupportBot.getBotConfig().getEmbedColour();
         var embed = new EmbedBuilder()
-                .setColor(new Color(rgb[0], rgb[1], rgb[2]))
+                .setColor(SupportBot.getBotConfig().getEmbedColour())
                 .setDescription("**Author**: " + event.getAuthor().getAsMention() +
                         "\n**Message**: " + event.getMessage().getContentRaw() +
-                        "\n\nClick the " + SupportBot.getClient().getSuccess() + " reaction below to close this ticket.")
+                        "\n\nClick the " + c.getDefaultReaction() + " reaction below to close this ticket, or click " + EmojiUtil.MICROPHONE + " to create a voice channel.")
                 .setThumbnail(event.getAuthor().getEffectiveAvatarUrl());
-        newTc.sendMessage(embed.build()).queue(m -> m.addReaction(SupportBot.getClient().getSuccess()).queue());
+        newTc.sendMessage(embed.build()).queue(m -> {
+            m.addReaction(c.getDefaultReaction()).queue();
+            m.addReaction(EmojiUtil.MICROPHONE).queue();
+        });
 
         event.getMessage().delete().queue();
     }

@@ -21,7 +21,4 @@ public class Categories {
                 || event.getMember().hasPermission(Permission.ADMINISTRATOR);
     });
 
-    public static Category general = new Category("General", event ->
-            !event.getAuthor().isFake() || !event.getAuthor().isBot());
-
 }

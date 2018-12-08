@@ -3,9 +3,11 @@ package net.greemdev.supportbot.files;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.greemdev.supportbot.SupportBot;
+import net.greemdev.supportbot.files.objects.ConfigColour;
 import net.greemdev.supportbot.util.ConfigUtil;
 import org.apache.commons.io.FileUtils;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,7 +21,7 @@ public class BotConfig {
     private String game;
     private String commandPrefix;
     private String ownerId;
-    private int[] embedColourRGB;
+    private ConfigColour embedColour;
     private boolean logCommands;
     private List<String> blacklistedServerOwners;
 
@@ -28,6 +30,7 @@ public class BotConfig {
         this.commandPrefix = "your-prefix-here";
         this.game = "your-game-here";
         this.ownerId = "your-user-id-here";
+        this.embedColour = new ConfigColour(112, 0, 251); //default, equivalent to 0x7000FB hex.
         this.logCommands = false;
         this.blacklistedServerOwners = Arrays.asList("user id 1", "user id 2", "...");
     }
@@ -44,8 +47,8 @@ public class BotConfig {
     public String getOwnerId() {
         return this.ownerId;
     }
-    public int[] getEmbedColour() {
-        return this.embedColourRGB;
+    public Color getEmbedColour() {
+        return this.embedColour.getAsColor();
     }
     public boolean getLogCommands() {
         return this.logCommands;

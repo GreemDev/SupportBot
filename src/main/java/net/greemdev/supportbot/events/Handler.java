@@ -2,6 +2,7 @@ package net.greemdev.supportbot.events;
 
 import com.jagrosh.jdautilities.command.CommandEvent;
 import net.dv8tion.jda.core.events.ReadyEvent;
+import net.dv8tion.jda.core.events.guild.GuildJoinEvent;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.core.events.message.guild.react.GuildMessageReactionAddEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
@@ -66,5 +67,10 @@ public class Handler extends ListenerAdapter {
         int guilds = ConfigUtil.getSetupGuilds().size();
         SupportBot.getLogger().info("Currently, " + guilds +
                 ((guilds != 1) ? " guilds are" : " guild is") + " setup.");
+    }
+
+    @Override
+    public void onGuildJoin(GuildJoinEvent event) {
+        GenericListener.onGuildJoin(event);
     }
 }

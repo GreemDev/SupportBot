@@ -93,12 +93,15 @@ class SupportChannelListener {
 
     private static void handleNew(GuildMessageReceivedEvent event, GuildConfig c) {
         String newChannelName = event.getChannel().getName() + "-" + event.getAuthor().getId();
-        TextChannel newTc;
         if (ObjectUtil.isNull(event.getChannel().getParent())) {
-            newTc = (TextChannel) event.getGuild().getController().createTextChannel(newChannelName).complete();
+            event.getGuild().getController().createTextChannel(newChannelName).queue(ch -> onTicketCreate(event, c, (TextChannel)ch));
         } else {
-            newTc = (TextChannel) event.getChannel().getParent().createTextChannel(newChannelName).complete();
+            event.getChannel().getParent().createTextChannel(newChannelName).queue(ch -> onTicketCreate(event, c, (TextChannel)ch));
         }
+
+    }
+
+    private static void onTicketCreate(GuildMessageReceivedEvent event, GuildConfig c, TextChannel newTc) {
         event.getGuild().getController().modifyTextChannelPositions().selectPosition(newTc).moveTo(event.getChannel().getPosition() + 1).queue();
 
         newTc.createPermissionOverride(event.getMember()).setAllow(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE).queue();

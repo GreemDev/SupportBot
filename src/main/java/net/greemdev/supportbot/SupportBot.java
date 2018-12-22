@@ -38,7 +38,7 @@ public class SupportBot {
         return c;
     }
     public static String getVersion() {
-        return "0.1-DEV";
+        return "1.0-PRE";
     }
 
     public SupportBot() {
@@ -63,6 +63,7 @@ public class SupportBot {
                     .setToken(BotConfig.get().getToken())
                     .setAudioEnabled(false)
                     .setAutoReconnect(true)
+
                     .addEventListener(new Handler(), c, new EventWaiter())
                     .build();
         } catch (LoginException e) {

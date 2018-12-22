@@ -27,6 +27,7 @@ public class EvalCmd extends Command {
         se.put("jda", SupportBot.getJda());
         se.put("self", SupportBot.getJda().getSelfUser());
         se.put("event", event);
+        se.put("runtime", Runtime.getRuntime());
         se.put("logger", LoggerFactory.getLogger(this.getClass()));
         se.put("config", GuildConfig.get(event.getGuild()));
 
@@ -34,11 +35,13 @@ public class EvalCmd extends Command {
             event.reply(new EmbedBuilder()
                     .setColor(SupportBot.getBotConfig().getEmbedColour())
                     .setTitle("Available Eval Variables")
-                    .addField("jda", "[interface net.dv8tion.jda.core.JDA](http://home.dv8tion.net:8080/job/JDA/javadoc/net/dv8tion/jda/core/JDA.html)", false)
-                    .addField("self", "[interface net.dv8tion.jda.core.entities.SelfUser](http://home.dv8tion.net:8080/job/JDA/javadoc/net/dv8tion/jda/core/entities/SelfUser.html)", false)
+                    .addField("jda", "[interface net.dv8tion.jda.core.JDA](https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/core/JDA.html)", false)
+                    .addField("self", "[interface net.dv8tion.jda.core.entities.SelfUser](https://ci.dv8tion.net/job/JDA/javadoc/net/dv8tion/jda/core/entities/SelfUser.html)", false)
                     .addField("event", "class com.jagrosh.jdautilities.command.CommandEvent", false)
-                    .addField("logger", "interface org.slf4j.Logger", false)
-                    .addField("config", "class net.greemdev.supportbot.files.GuildConfig", false).build());
+                    .addField("runtime", "[class java.lang.Runtime](https://docs.oracle.com/javase/7/docs/api/java/lang/Runtime.html)", false)
+                    .addField("logger", "[interface org.slf4j.Logger](https://www.slf4j.org/api/org/slf4j/Logger.html)", false)
+                    .addField("config", "class net.greemdev.supportbot.files.GuildConfig", false)
+                    .build());
             return;
         }
 

@@ -2,6 +2,7 @@ package net.greemdev.supportbot.util;
 
 import com.google.gson.GsonBuilder;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.Game;
 import net.greemdev.supportbot.SupportBot;
 import net.greemdev.supportbot.files.GuildConfig;
@@ -40,28 +41,28 @@ public class ConfigUtil {
         return guildIds;
     }
 
-    public static void parseGame() {
+    public static void parseGame(JDA jda) {
         var game = SupportBot.getBotConfig().getGame();
         var lowercaseArray = game.toLowerCase().split(" ");
         var activity = game.replace(game.split(" ")[0], "").trim();
         switch (lowercaseArray[0]) {
             case "playing": {
-                SupportBot.getJda().getPresence().setGame(Game.playing(activity));
+                jda.getPresence().setGame(Game.playing(activity));
                 SupportBot.getLogger().info("Set the game to \"Playing " + activity + "\"");
                 break;
             }
             case "listeningto": {
-                SupportBot.getJda().getPresence().setGame(Game.listening(activity));
+                jda.getPresence().setGame(Game.listening(activity));
                 SupportBot.getLogger().info("Set the game to \"Listening to " + activity + "\"");
                 break;
             }
             case "watching": {
-                SupportBot.getJda().getPresence().setGame(Game.watching(activity));
+                jda.getPresence().setGame(Game.watching(activity));
                 SupportBot.getLogger().info("Set the game to \"Watching " + activity + "\"");
                 break;
             }
             default: {
-                SupportBot.getJda().getPresence().setGame(Game.playing(activity));
+                jda.getPresence().setGame(Game.playing(activity));
                 SupportBot.getLogger().warn("Your game wasn't set properly. " +
                         "You entered the activity as " + lowercaseArray[0] +
                         "instead of a valid activity: Playing, Listeningto, or Watching.");

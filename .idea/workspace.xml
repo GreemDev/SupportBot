@@ -7,12 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1eb01915-f7e4-4e21-8681-c2b8ec117565" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/SupportBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/SupportBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/files/BotConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/files/BotConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,20 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/files/objects/ConfigColour.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1464">
-              <caret line="73" column="43" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
+            <state relative-caret-position="650">
+              <caret line="64" column="37" lean-forward="true" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,10 +40,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SupportChannelListener.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1968">
-              <caret line="96" column="132" selection-start-line="96" selection-start-column="132" selection-end-line="96" selection-end-column="132" />
+            <state relative-caret-position="361">
+              <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,7 +109,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/files/BotConfig.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="578">
@@ -143,6 +131,15 @@
                 <element signature="e#1762#1763#0" expanded="true" />
                 <element signature="e#1813#1814#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/guilds/385902350432206849.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -203,7 +200,6 @@
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SetupListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/commands/owner/EvalCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ObjectUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/commands/admin/SetAuthorCanCloseCmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/commands/admin/SetDefaultReactionCmd.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/commands/admin/SetMaxOpenTicketsCmd.java" />
@@ -217,11 +213,12 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/SupportChannelListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/commands/owner/EvalCmd.java" />
-        <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/GenericListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/SupportBot.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/files/BotConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java" />
       </list>
     </option>
   </component>
@@ -307,17 +304,6 @@
             <path>
               <item name="SupportBot" type="b2602c69:ProjectViewProjectNode" />
               <item name="SupportBot" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SupportBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SupportBot" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="SupportBot" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SupportBot" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="guilds" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="SupportBot" type="b2602c69:ProjectViewProjectNode" />
@@ -473,7 +459,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/data/config.json&#10;Z:/Coding Projects/Java/JDA/SupportBot/data/guilds/null.json&#10;Z:/Coding Projects/Java/JDA/SupportBot/data/guilds/385902350432206849.json" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545456632809" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553484436864" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -574,7 +560,7 @@
       <workItem from="1544243542180" duration="3309000" />
       <workItem from="1545449078589" duration="4225000" />
       <workItem from="1545525721358" duration="1822000" />
-      <workItem from="1553482944448" duration="596000" />
+      <workItem from="1553482944448" duration="1492000" />
     </task>
     <task id="LOCAL-00001" summary="jesus i haven't committed in a while">
       <created>1542000823240</created>
@@ -660,11 +646,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545456619471</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="cleanup BotConfig.java">
+      <created>1553483567249</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1553483567249</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93009000" />
+    <option name="totallyTimeSpent" value="93905000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1936" height="1047" extended-state="0" />
@@ -716,7 +709,8 @@
     <MESSAGE value="this commit doesnt want to fall away (still dont use this codebase it's so very far from fine)" />
     <MESSAGE value="use an actual colour object rather than an arbitrary integer array, among other schtuff." />
     <MESSAGE value="owner dm instrusctions &amp; eval updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="owner dm instrusctions &amp; eval updates" />
+    <MESSAGE value="cleanup BotConfig.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup BotConfig.java" />
   </component>
   <component name="editorHistoryManager">
     <entry file="jar://C:/Program Files/Java/jdk-10.0.2/lib/src.zip!/java.base/java/nio/charset/Charset.java" />
@@ -843,23 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
-          <caret line="77" column="100" selection-start-line="77" selection-start-column="100" selection-end-line="77" selection-end-column="100" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/guilds/385902350432206849.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
@@ -895,16 +872,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
           <caret line="17" column="49" selection-start-line="17" selection-start-column="49" selection-end-line="17" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1464">
-          <caret line="73" column="43" selection-start-line="73" selection-start-column="43" selection-end-line="73" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -996,6 +963,33 @@
             <element signature="e#1707#1708#0" expanded="true" />
             <element signature="e#1762#1763#0" expanded="true" />
             <element signature="e#1813#1814#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/guilds/385902350432206849.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/util/ConfigUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="64" column="19" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/net/greemdev/supportbot/events/Handler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="650">
+          <caret line="64" column="37" lean-forward="true" selection-start-line="64" selection-start-column="37" selection-end-line="64" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

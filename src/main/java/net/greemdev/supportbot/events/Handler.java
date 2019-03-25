@@ -15,11 +15,10 @@ import java.util.Date;
 
 public class Handler extends ListenerAdapter {
 
-    private Logger logger = SupportBot.getLogger();
+    private static Logger logger = SupportBot.getLogger();
 
     public static void onCommand(CommandEvent event) {
         if (!SupportBot.getBotConfig().getLogCommands()) return;
-        var logger = SupportBot.getLogger();
         logger.info("--| Command from User: " + FormatUtil.getUserString(event.getAuthor()));
         logger.info("--|  Command Executed: " +
                 event.getMessage().getContentRaw().split(" ")[0].replace(SupportBot.getClient().getPrefix(), ""));
@@ -31,23 +30,23 @@ public class Handler extends ListenerAdapter {
 
     @Override
     public void onReady(ReadyEvent event) {
-        var plural = (event.getJDA().getGuilds().size() != 1) ? " guilds" : " guild";
-        this.logger.info("");
-        this.logger.info("      #####                                           ######               ");
-        this.logger.info("     #     # #    # #####  #####   ####  #####  ##### #     #  ####  ##### ");
-        this.logger.info("     #       #    # #    # #    # #    # #    #   #   #     # #    #   #   ");
-        this.logger.info("      #####  #    # #    # #    # #    # #    #   #   ######  #    #   #   ");
-        this.logger.info("           # #    # #####  #####  #    # #####    #   #     # #    #   #   ");
-        this.logger.info("     #     # #    # #      #      #    # #   #    #   #     # #    #   #   ");
-        this.logger.info("      #####   ####  #      #       ####  #    #   #   ######   ####    #   ");
-        this.logger.info("");
-        this.logger.info("       Logged in as " + FormatUtil.getUserString(event.getJDA().getSelfUser()) + ".");
-        this.logger.info("       Connected to " + event.getJDA().getGuilds().size() + plural);
-        this.logger.info("       Connected to " + event.getJDA().getUsers().size() + " users.");
+        var pluralGuilds = (event.getJDA().getGuilds().size() != 1) ? " guilds." : " guild.";
+        var pluralUsers = (event.getJDA().getUsers().size() != 1) ? " users." : " user.";
+        logger.info("");
+        logger.info("      #####                                           ######               ");
+        logger.info("     #     # #    # #####  #####   ####  #####  ##### #     #  ####  ##### ");
+        logger.info("     #       #    # #    # #    # #    # #    #   #   #     # #    #   #   ");
+        logger.info("      #####  #    # #    # #    # #    # #    #   #   ######  #    #   #   ");
+        logger.info("           # #    # #####  #####  #    # #####    #   #     # #    #   #   ");
+        logger.info("     #     # #    # #      #      #    # #   #    #   #     # #    #   #   ");
+        logger.info("      #####   ####  #      #       ####  #    #   #   ######   ####    #   ");
+        logger.info("");
+        logger.info("       Logged in as " + FormatUtil.getUserString(event.getJDA().getSelfUser()) + ".");
+        logger.info("       Connected to " + event.getJDA().getGuilds().size() + pluralGuilds);
+        logger.info("       Connected to " + event.getJDA().getUsers().size() + pluralUsers);
         this.printSupportInfo();
-        this.logger.info("| Now accepting commands.");
-        ConfigUtil.parseGame();
-
+        logger.info("| Now accepting commands.");
+        ConfigUtil.parseGame(event.getJDA());
 
         GenericListener.onReady(event);
     }

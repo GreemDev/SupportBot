@@ -1,13 +1,17 @@
 package net.greemdev.supportbot;
 
-import com.jagrosh.jdautilities.command.*;
+import com.jagrosh.jdautilities.command.CommandClient;
+import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
-import net.dv8tion.jda.core.*;
+import net.dv8tion.jda.core.AccountType;
+import net.dv8tion.jda.core.JDA;
+import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.OnlineStatus;
 import net.dv8tion.jda.core.entities.Game;
 import net.greemdev.supportbot.commands.CommandRegistry;
 import net.greemdev.supportbot.events.Handler;
 import net.greemdev.supportbot.files.BotConfig;
-import net.greemdev.supportbot.util.*;
+import net.greemdev.supportbot.util.EmojiUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +19,8 @@ import javax.security.auth.login.LoginException;
 
 public class SupportBot {
     /**
-     *  Gets a logger for a specific class.
+     * Gets a logger for a specific class.
+     *
      * @param clazz Class to get the {@link org.slf4j.Logger} for.
      * @return {@link org.slf4j.Logger} logger
      */
@@ -23,9 +28,15 @@ public class SupportBot {
         return LoggerFactory.getLogger(clazz);
     }
 
+    /**
+     * Returns the {@link org.slf4j.Logger} for the {@link net.greemdev.supportbot.SupportBot} class.
+     *
+     * @return {@link org.slf4j.Logger} logger
+     */
     public static Logger getLogger() {
         return LoggerFactory.getLogger(SupportBot.class);
     }
+
     public static JDA getJda() {
         return jda;
     }
@@ -60,10 +71,9 @@ public class SupportBot {
 
         try {
             jda = new JDABuilder(AccountType.BOT)
-                    .setToken(BotConfig.get().getToken())
+                    .setToken(getBotConfig().getToken())
                     .setAudioEnabled(false)
                     .setAutoReconnect(true)
-
                     .addEventListener(new Handler(), c, new EventWaiter())
                     .build();
         } catch (LoginException e) {
@@ -72,7 +82,6 @@ public class SupportBot {
             System.exit(1);
         }
     }
-
 
 
 }
